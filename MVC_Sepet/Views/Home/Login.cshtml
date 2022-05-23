@@ -1,0 +1,35 @@
+﻿@model UserVM
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h2>Giriş Yap</h2>
+            </div>
+            <div class="card-body">
+                @if (TempData["error"] != null)
+                {
+                    <h2>@TempData["error"]</h2>
+                }
+            <form method="post">
+                <div>
+                    <label>Username:</label>
+                    @Html.ValidationMessageFor(x => x.FirstName)
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+                </div>
+                <div>
+                    <label>Password:</label>
+                    @Html.ValidationMessageFor(x => x.Password)
+                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+                </div>
+                @Html.ActionLink("Login", "CompleteCart", "Home", null, new { @class = "btn btn-primary" })
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+

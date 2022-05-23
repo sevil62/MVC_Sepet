@@ -1,0 +1,36 @@
+﻿@model ProductVM
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card-body">
+<a class="btn btn-warning float-end ms-3" href="/Home/index">Product</a>
+    Product Update
+</div>
+<div class="card-body">
+    @using (Html.BeginForm("Update", "Home", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.Product.ProductID)
+
+        <div>
+            @Html.TextBoxFor(x => x.Product.ProductName, new { placeholder = "Isim" })
+
+
+        </div>
+        
+        <div>
+            @Html.TextBoxFor(x => x.Product.UnitPrice, new { placeholder = "Fiyat" })
+
+        </div>
+        <div>
+            
+            @Html.TextBoxFor(x => x.Product.Quantity, new { placeholder = "Adet" })
+        </div>
+
+        <br />
+
+        <button type="submit">Update Product</button>
+    }
+
+</div>

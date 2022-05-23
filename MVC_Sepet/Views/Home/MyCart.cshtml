@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "MyCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Cart sessionCart = Session["scart"] as Cart;
+    decimal? totalPrice = 0;
+}
+
+<div class="row">
+    <div class="col-md-9">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>UnitPrice</th>
+                    <th>Sub Total</th>
+                    <th></th>
+                    <th></th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in sessionCart.myCart)
+                {
+                    totalPrice += item.SubTotal;
+                    <tr>
+                        <td>
+                            <img class="card-img myCart-img" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                        </td>
+                        <td>@item.ProductName</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Price</td>
+                        <td>@item.SubTotal</td>
+                        <td>@Html.ActionLink("Update", "Update", "Home", null, new { @class = "btn btn-primary" })</td>
+                        <td>@Html.ActionLink("Delete", "Delete", "Home", null, new { @class = "btn btn-warning" })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-header">
+                <h5>Özet</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h5>Genel Toplam:</h5>
+                    <h5>@totalPrice TL</h5>
+                </div>
+                <div class="col-md-12 mt-5">
+                    @Html.ActionLink("Alışverişi Tamamla", "Login", "Home", null, new {@class="btn btn-info"})
+                    @Html.ActionLink("Devam et", "Index", "Home", null, new {@class="btn btn-warning"})
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
